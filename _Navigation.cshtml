@@ -1,0 +1,86 @@
+<!-- Main and secondary nav menus -->
+@*Removed uw-hidden class from div uw-top-menus*@
+<div id="uw-top-menus" class="uw-is-visible uw-horizontal" aria-hidden="false">
+    <div class="uw-main-nav">
+        <nav class="uw-nav-menu uw-nav-menu-reverse" aria-label="Main Menu">
+            <ul id="uw-main-nav">
+                <li>
+                    <a href=@(System.Configuration.ConfigurationManager.AppSettings["RootURL"] + "index.htm")>Home</a>
+                </li>
+                <li>
+                    <a href=@(System.Configuration.ConfigurationManager.AppSettings["RootURL"] + "access.htm")>Access</a>
+                </li>
+                <li>
+                    <a href=@(System.Configuration.ConfigurationManager.AppSettings["RootURL"] + "learn.htm") aria-current="page">Learn</a>
+                </li>
+                <li id="menu-about" class="uw-dropdown">
+                    <a role="button" aria-haspopup="true" aria-expanded="false">
+                        About<svg aria-hidden="true" class="uw-caret"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#uw-symbol-caret-down"></use></svg><svg aria-hidden="true" class="uw-caret"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#uw-symbol-caret-up"></use></svg>
+                    </a>
+                    <ul aria-hidden="true" aria-label="About submenu" class="uw-child-menu">
+                        <li>
+                            <a href=@(System.Configuration.ConfigurationManager.AppSettings["RootURL"] + "about-our-office.htm")>Our Office</a>
+                        </li>
+                        <li>
+                            <a href=@(System.Configuration.ConfigurationManager.AppSettings["RootURL"] + "about-sis.htm")>The System and Working Groups</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="uw-secondary-nav">
+        <nav class="uw-nav-menu uw-nav-menu-secondary" aria-label="Secondary Menu">
+            <ul>
+                <li id="isis">
+                    <a href=@(System.Configuration.ConfigurationManager.AppSettings["RootURL"] + "login.htm")>Log in to SIS</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<div class="row" >
+    <dl class="sub-nav pages-list">
+        <dt class="large-show small-12 medium-12 large-2"><a href=@(System.Configuration.ConfigurationManager.AppSettings["RootURL"] + "/learn.htm") >SIS Learning:</a></dt>
+        <dd class="large-2 medium-12 small-124">
+            @Html.ActionLink("My Learning", "MyLearning", "Trainee", null, new { title = "Open the My Learning page", id = "subNavMyLearning", @class = "subNavLink" })
+        </dd>
+        <dd class="large-3 medium-12 small-12">
+            @Html.ActionLink("Courses and Registration", "CourseCatalog", "Course", null, new { title = "Open the Course Catalog page", id = "subNavCourseCatalog", @class = "subNavLink" })
+        </dd>
+        <dd class="large-2 medium-12 small-12">
+            @Html.ActionLink("Support Materials", "SupportMaterials", "SupportMaterials", null, new { title = "Open the Support Materials page", id = "subNavSupportMaterials", @class = "subNavLink" })
+        </dd>
+        <dd class="large-2 medium-12 small-12 right">
+            @if (User.Identity.IsAuthenticated && Session["Authenticated"] != null && Session["Authenticated"].ToString() == "True")
+            {
+                @Html.ActionLink("Log Out", "LogOut", "Account", null, new { tilte = "Log out of My Learning" })
+            }
+        </dd>
+    </dl>
+</div>
+
+
+
+    @*<ul aria-hidden="false" aria-label="Templates submenu" class="uw-child-menu">
+        <li class="current-menu-item">
+            <a href=@(System.Configuration.ConfigurationManager.AppSettings["RootURL"] + "learn.htm") aria-current="page">Learn</a>
+        </li>
+        <li class="current-menu-item" style="padding:4px 7px 2px 4px">
+            @Html.ActionLink("My Learning", "MyLearning", "Trainee", null, new { title = "Open the My Learning page", id = "subNavMyLearning", @class = "subNavLink" })
+        </li>
+        <li style="padding:4px 7px 2px 4px">
+            @Html.ActionLink("Courses and Registration", "CourseCatalog", "Course", null, new { title = "Open the Course Catalog page", id = "subNavCourseCatalog", @class = "subNavLink" })
+        </li>
+        <li>
+            @Html.ActionLink("Support Materials", "SupportMaterials", "SupportMaterials", null, new { title = "Open the Support Materials page", id = "subNavSupportMaterials", @class = "subNavLink" })
+        </li>
+        <li>
+            @if (User.Identity.IsAuthenticated && Session["Authenticated"] != null && Session["Authenticated"].ToString() == "True")
+            {
+                @Html.ActionLink("Log Out", "LogOut", "Account", null, new { title = "Log out of My Learning" })
+            }
+        </li>
+    </ul>*@
